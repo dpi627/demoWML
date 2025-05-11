@@ -1,3 +1,6 @@
+using demoWML.Models;
+using Microsoft.EntityFrameworkCore;
+
 namespace demoWML
 {
     public class Program
@@ -5,6 +8,9 @@ namespace demoWML
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddDbContext<WML_SD_A99Context>(
+        options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
